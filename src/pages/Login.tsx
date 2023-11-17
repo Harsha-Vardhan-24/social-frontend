@@ -2,7 +2,9 @@ import { useState } from "react"
 import { Formik, Form, Field } from "formik"
 import * as Yup from "yup"
 import axios from "axios"
-import { userLoginType, userSignUpType } from "../types/user-authentication"
+import { userLoginType, userSignUpType } from "../types/types"
+import { loginInitialValues, signUpInitialValues } from "../utils/utils"
+import bcrypt from "bcryptjs"
 import image from "../assets/android-chrome-192x192.png"
 
 const Login = () => {
@@ -34,6 +36,8 @@ const Login = () => {
     .required('Password is Required')
   })
 
+  const salt = bcrypt.genSaltSync(8)
+
   const setSignup = () => {
     setSignUp(prevState => !prevState);
   }
@@ -43,11 +47,9 @@ const Login = () => {
     console.log(res)
   }
 
-  const signUpInitialValues = {
-    firstName: '',
-    lastName: '',
-    email: '',
-    password: '',
+  const userLogin = async (values: userLoginType) => {
+    const res = await axios.post(`${apiKey}authentication/login`, values)
+    console.log(res)
   }
 
   return (
@@ -58,19 +60,21 @@ const Login = () => {
       {signUp ? 
         <Formik
           initialValues={signUpInitialValues}
+          enableReinitialize={true}
           validationSchema={signupSchema}
           onSubmit={values => {
-            // same shape as initial values
-            userSignUp(values)
+            const hashedPassword = bcrypt.hashSync(values.password, salt) 
+            const updatedValues = {...values, password: hashedPassword}
+            userSignUp(updatedValues)
           }}
         >
         {({ errors, touched }) => (
           <Form className="form-area">
-            <Field className="form-element" name="firstName" placeholder="First Name" value="" />
+            <Field className="form-element" name="firstName" placeholder="First Name" />
             {errors.firstName && touched.firstName ? (
               <div>{errors.firstName}</div>
             ) : null}
-            <Field className="form-element" name="lastName" placeholder="Last Name" value="" />
+            <Field className="form-element" name="lastName" placeholder="Last Name" />
             {errors.lastName && touched.lastName ? (
               <div>{errors.lastName}</div>
             ) : null}
@@ -83,15 +87,13 @@ const Login = () => {
         )}
         </Formik> : 
         <Formik
-        initialValues={{
-          email: '',
-          password: '',
-        }}
+        initialValues={loginInitialValues}
+        enableReinitialize={true}
         validationSchema={loginSchema}
         onSubmit={values => {
-          // same shape as initial values
-
-          console.log(values)
+          const hashedPassword = bcrypt.hashSync(values.password, salt) 
+          const updatedValues = {...values, password: hashedPassword}
+          userLogin(updatedValues)
         }}
       >
         {({ errors, touched }) => (
