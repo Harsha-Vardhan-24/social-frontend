@@ -1,0 +1,126 @@
+/* Base CSS Data */
+
+html, body {
+  margin: 0;
+  font-family: 'Montserrat', sans-serif;
+  background-color: #F7F8F7;
+  color: #000000;
+}
+
+h1 {
+  margin: 0;
+}
+
+/* Header CSS Data */
+
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1em 2em;
+}
+
+nav {
+  display: flex;
+  gap: 1em;
+}
+
+button {
+  padding: 1em;
+  font-family: "Montserrat", sans-serif;
+  font-weight: 600;
+  outline: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:disabled {
+  background-color: #D7DAD8;
+  color: #000000;
+  cursor: not-allowed;
+}
+
+.primary {
+  background-color: #3A383D;
+  color: #D7DAD8;
+}
+
+.secondary {
+  background-color: #D7DAD8;
+  color: #000000;
+}
+
+.primary:hover,
+.primary:focus
+.primary:active {
+  background-color: #D7DAD8;
+  color: #000000;
+}
+
+.secondary:hover,
+.secondary:focus
+.secondary:active {
+  background-color: #3A383D;
+  color: #D7DAD8;
+}
+
+/* Footer CSS Data */
+
+footer {
+  text-align: center;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+/* Login Form */
+
+.login-section {
+  text-align: center;
+  margin-top: 2em;
+}
+
+.link {
+  color: #3A383D;
+  font-weight: 600;
+}
+
+.logo {
+  height: 4em;
+  margin: 0 auto;
+  display: block;
+}
+
+.form-area {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+  max-width: 50%;
+  margin: 0 auto;
+}
+
+.form-element {
+  height: 3em;
+  outline: none;
+  border: none;
+  padding: 10px;
+  font-size: 1em;
+  font-family: "Montserrat", sans-serif;
+  border-radius: 10px;
+}
+
+.form-element:focus,
+.form-element:hover,
+.form-element:active {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+@media only screen and (max-width: 500px) {
+  header > h1 {
+    display: none;
+  }
+
+  .form-area {
+    max-width: 90%;
+  }
+}
