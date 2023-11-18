@@ -4,13 +4,14 @@ import * as Yup from "yup"
 import axios from "axios"
 import { userLoginType, userSignUpType } from "../types/types"
 import { loginInitialValues, signUpInitialValues } from "../utils/utils"
-import bcrypt from "bcryptjs"
 import image from "../assets/android-chrome-192x192.png"
 
 const Login = () => {
   const apiKey = import.meta.env.VITE_API_KEY
 
   const [signUp, setSignUp] = useState(false)
+
+  const [userMessage, setUserMessage] = useState(undefined);
   
   const signupSchema = Yup.object().shape({
     firstName: Yup.string()
@@ -36,20 +37,18 @@ const Login = () => {
     .required('Password is Required')
   })
 
-  const salt = bcrypt.genSaltSync(8)
-
   const setSignup = () => {
     setSignUp(prevState => !prevState);
   }
 
   const userSignUp = async (values: userSignUpType) => {
     const res = await axios.post(`${apiKey}authentication/signup`, values)
-    console.log(res)
+    setUserMessage(res.data)
   }
 
   const userLogin = async (values: userLoginType) => {
     const res = await axios.post(`${apiKey}authentication/login`, values)
-    console.log(res)
+    setUserMessage(res.data)
   }
 
   return (
@@ -57,16 +56,18 @@ const Login = () => {
       <img src={image} alt="logo" className="logo" />
       <h1>{signUp ? "Create " : "Login to your "}account</h1>
       <p>{signUp ? "Already have an account?" : "Don't have an account yet?" } <a onClick={setSignup}><span className="link">{signUp ? "Login" : "Signup"}</span></a></p>
+      {userMessage ? 
+      <div className="error-message">
+        <p>{userMessage}</p>
+      </div> :
+      <div></div>
+      }
       {signUp ? 
         <Formik
           initialValues={signUpInitialValues}
           enableReinitialize={true}
           validationSchema={signupSchema}
-          onSubmit={values => {
-            const hashedPassword = bcrypt.hashSync(values.password, salt) 
-            const updatedValues = {...values, password: hashedPassword}
-            userSignUp(updatedValues)
-          }}
+          onSubmit={values => userSignUp(values)}
         >
         {({ errors, touched }) => (
           <Form className="form-area">
@@ -90,11 +91,7 @@ const Login = () => {
         initialValues={loginInitialValues}
         enableReinitialize={true}
         validationSchema={loginSchema}
-        onSubmit={values => {
-          const hashedPassword = bcrypt.hashSync(values.password, salt) 
-          const updatedValues = {...values, password: hashedPassword}
-          userLogin(updatedValues)
-        }}
+        onSubmit={values => userLogin(values)}
       >
         {({ errors, touched }) => (
           <Form className="form-area">
