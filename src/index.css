@@ -71,6 +71,18 @@ footer {
   text-align: center;
   font-weight: bold;
   font-size: 1em;
+  position: absolute;
+  bottom: 1em;
+  left: 0;
+  right: 0;
+}
+
+/* Homepage */
+
+.homepage {
+  display: flex;
+  justify-content: space-between;
+  padding: 1em 2em;
 }
 
 /* Login Form */
@@ -94,6 +106,7 @@ footer {
 
 .error-message {
   color: red;
+  opacity: 60%;
   text-align: center;
   font-weight: bold;
 }
@@ -102,7 +115,7 @@ footer {
   display: flex;
   flex-direction: column;
   gap: 1em;
-  max-width: 50%;
+  max-width: 100%;
   margin: 0 auto;
 }
 
@@ -129,5 +142,19 @@ footer {
 
   .form-area {
     max-width: 90%;
+  }
+
+  .mockup {
+    display: none;
+  }
+}
+
+@media only screen and (max-width: 850px) {
+  .mockup {
+    display: none;
+  }
+
+  .login-section {
+    margin: 0 auto;
   }
 }

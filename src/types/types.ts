@@ -4,8 +4,8 @@ export type userLoginType = {
 }
 
 export type userSignUpType = {
-  firstName: string,
-  lastName: string,
   email: string,
+  fullName: string,
+  userName: string,
   password: string
 }

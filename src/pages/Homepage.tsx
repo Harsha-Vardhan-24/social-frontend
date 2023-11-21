@@ -1,6 +1,11 @@
+import Login from "./Login"
+
 const Homepage = () => {
   return (
-    <div>Homepage</div>
+    <main className="homepage">
+      <section className="mockup">Mockups in here</section>
+      <Login />
+    </main>
   )
 }
 
