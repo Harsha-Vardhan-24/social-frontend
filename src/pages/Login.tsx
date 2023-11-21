@@ -43,12 +43,12 @@ const Login = () => {
 
   const userSignUp = async (values: userSignUpType) => {
     const res = await axios.post(`${apiKey}authentication/signup`, values)
-    setUserMessage(res.data)
+    setUserMessage(res.data.message ? res.data.message : res.data)
   }
 
   const userLogin = async (values: userLoginType) => {
     const res = await axios.post(`${apiKey}authentication/login`, values)
-    setUserMessage(res.data)
+    setUserMessage(res.data.message ? res.data.message : res.data)
   }
 
   return (
