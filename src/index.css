@@ -5,6 +5,7 @@ html, body {
   font-family: 'Montserrat', sans-serif;
   background-color: #F7F8F7;
   color: #000000;
+  user-select: none;
 }
 
 h1 {
@@ -82,7 +83,7 @@ footer {
 .homepage {
   display: flex;
   justify-content: space-between;
-  padding: 1em 2em;
+  padding: 6em 10em;
 }
 
 /* Login Form */
@@ -135,6 +136,49 @@ footer {
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
 }
 
+/* Feed area */
+.main-area {
+  display: flex;
+  justify-content: space-between;
+} 
+
+/* Side Bar */
+
+.sidebar {
+  padding: 1em;
+}
+
+.sidebar-element {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 10px 5px;
+  border-radius: 20px;
+  font-size: 1.8em;
+}
+
+.sidebar-logo {
+  height: 40px;
+  padding: 10px 5px;
+}
+
+.sidebar-element:hover,
+.sidebar-element:focus,
+.sidebar-element:active {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+.sidebar-element > h1 {
+  font-size: 1em;
+  font-weight: 500;
+  margin-left: 10px;
+}
+
+.sidebar-btn {
+  margin-top: 1.5em;
+  width: 100%;
+}
+
 @media only screen and (max-width: 500px) {
   header > h1 {
     display: none;
@@ -146,6 +190,10 @@ footer {
 
   .mockup {
     display: none;
+  }
+
+  .homepage {
+    padding: 2em 1em;
   }
 }
 

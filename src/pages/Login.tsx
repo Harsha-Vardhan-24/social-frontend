@@ -3,7 +3,7 @@ import { Formik, Form, Field } from "formik"
 import * as Yup from "yup"
 import axios from "axios"
 import { userLoginType, userSignUpType } from "../types/types"
-import { loginInitialValues, signUpInitialValues } from "../utils/utils"
+import { loginInitialValues, redirectUser, signUpInitialValues } from "../utils/utils"
 import image from "../assets/android-chrome-192x192.png"
 
 const Login = () => {
@@ -43,12 +43,24 @@ const Login = () => {
 
   const userSignUp = async (values: userSignUpType) => {
     const res = await axios.post(`${apiKey}authentication/signup`, values)
-    setUserMessage(res.data.message ? res.data.message : res.data)
+    if(res.data.message) {
+      setUserMessage(res.data.message)
+      redirectUser(res.data.userEmail)
+      console.log(localStorage.getItem("userEmail"))
+    } else {
+      setUserMessage(res.data)
+    }
   }
 
   const userLogin = async (values: userLoginType) => {
     const res = await axios.post(`${apiKey}authentication/login`, values)
-    setUserMessage(res.data.message ? res.data.message : res.data)
+    if(res.data.message) {
+      setUserMessage(res.data.message)
+      redirectUser(res.data.userEmail)
+      console.log(localStorage.getItem("userEmail"))
+    } else {
+      setUserMessage(res.data)
+    }
   }
 
   return (
