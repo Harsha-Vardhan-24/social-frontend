@@ -21,3 +21,8 @@ export const userCheck = () => {
     return false
   }
 }
+
+export const submitPost = (e: React.FormEvent) => {
+  e.preventDefault();
+   
+}
