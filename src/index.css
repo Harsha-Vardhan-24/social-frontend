@@ -310,6 +310,11 @@ footer {
 
 .add-img-icon {
   font-size: 2em;
+  cursor: pointer;
+}
+
+#user-upload-img {
+  display: none;
 }
 
 @media only screen and (max-width: 500px) {
@@ -341,7 +346,6 @@ footer {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100vw;
     margin-bottom: 10px;
   }
 
@@ -369,10 +373,11 @@ footer {
     justify-content: space-between;
     align-items: center;
     padding: 1em;
+    margin: 0 auto;
   }
 
   .post-input-form {
-    width: 70vw;
+    width: 80vw;
   }
 
   .profile-pic {
