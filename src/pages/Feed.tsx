@@ -9,9 +9,9 @@ const Feed = () => {
   const [postImage, setPostImage] = useState(undefined)
   
   const userFileInput = (e: React.FormEvent) => {
-    console.log(e.currentTarget.files[0])
+    // Need to update this file taking function.
+    // console.log(e.currentTarget.files[0])
   }
-
 
   return (
     <main className="main-area">
