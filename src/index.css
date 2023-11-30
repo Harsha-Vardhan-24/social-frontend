@@ -264,7 +264,6 @@ footer {
 
 .feed-area {
   padding-top: 1em;
-  margin-right: 1em;
 }
 
 .profile-pic {
@@ -303,7 +302,8 @@ footer {
   grid-area: action-items;
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  margin-top: 10px;
+  gap: 4em;
 }
 
 .add-img-icon {
@@ -316,20 +316,20 @@ footer {
 }
 
 .post-area {
-  background-color: red;
   max-width: 400px;
   margin: 0 auto;
 }
 
 .post {
   background-color: whitesmoke;
-  border: 1px solid black;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   margin: 10px auto 0;
 }
 
 .user-data-post {
   margin-top: 10px;
   display: flex;
+  align-items: center;
   gap: 10px;
 }
 
@@ -341,17 +341,87 @@ footer {
 
 .user-interaction-area {
   display: flex;
+  align-items: center;
   gap: 1em;
 }
 
 .user-interaction-area > .icon {
-  height: 2em;
-  width: 2em;
-  background-color: red;
+  font-size: 2em;
 }
 
 .user-interaction-area > .icon:last-child {
   margin-left: auto;
+}
+
+/* User Profile Data */
+
+.user-profile-data-area {
+  box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 1em;
+}
+
+.user-profile-data {
+  display: flex;
+  align-items: center;
+  gap: 1em;
+  padding: 1em;
+}
+
+.user-profile-pic {
+  height: 100px;
+  width: 100px;
+  border-radius: 10px;
+}
+
+.user-profile-text {
+  font-size: 2em;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.profile-btn {
+  margin-left: auto;
+}
+
+.user-data-count {
+  font-weight: 500;
+  display: flex;
+  font-size: 1em;
+  gap: 1em;
+  margin-bottom: 10px;
+  justify-content: center;
+}
+
+.follow-btn {
+  display: inline-block;
+  width: 90%;
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.no-posts {
+  text-align: center;
+  font-size: 2em;
+  margin: 8em 0;
+}
+
+.no-posts > h1 {
+  font-size: 1em;
+}
+
+.mini-post {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  padding: 1em;
+}
+
+.mini-post-img {
+  height: 500px;
+  width: 500px;
 }
 
 @media only screen and (max-width: 500px) {
@@ -405,33 +475,43 @@ footer {
     font-size: 2em;
   }
 
+  .post {
+    padding: 5px;
+  }
+
   .post-box {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    flex-direction: column;
     padding: 1em;
     margin: 0 auto;
   }
 
   .post-input-form {
     width: 80vw;
+    margin-left: 8px;
   }
 
   .profile-pic {
     display: none;
   }
 
-  .action-items {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    margin-left: 10px;
-    gap: 2em;
+  .user-data-post > .profile-pic {
+    display: block;
   }
 
-  .post-area {
-    background-color: red;
-    height: 100vh;
+  .action-items {
+    display: flex;
+    justify-content: space-between;
+    padding: 0 1em;
+  }
+
+  .user-profile-pic {
+    height: 75px;
+    width: 75px;
+  }
+
+  .user-profile-text {
+    font-size: 1em;
   }
 }
 

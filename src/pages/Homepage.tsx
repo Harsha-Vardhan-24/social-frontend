@@ -1,3 +1,4 @@
+import { useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import { userCheck } from "../utils/utils"
 import Login from "./Login"
@@ -8,7 +9,9 @@ const Homepage = () => {
   const isLoggedIn = userCheck()
 
   if (isLoggedIn) {
-    navigate("/feed")
+    useEffect(() => {
+      navigate("/feed")
+    }, [])
   } else {
     return (
       <main className="homepage">

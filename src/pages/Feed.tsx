@@ -4,12 +4,21 @@ import profilePic from "../assets/john-wick-profilepic.jfif";
 import { BiImageAdd } from "react-icons/bi";
 import { submitPost } from "../utils/utils";
 import { useState } from "react";
+import Post from "../components/Post";
 
 const Feed = () => {
   const [postImage, setPostImage] = useState(undefined);
 
-  const userFileInput = (e: React.FormEvent) => {
-    console.log(e.currentTarget.files[0])
+  const userFileInput = (e: any) => {
+    const userFile = e.currentTarget.files[0] 
+    
+    if (userFile) {
+      if (userFile.type.startsWith("image/")) {
+        console.log(userFile)
+      } else {
+        console.log("This is not a image file type")
+      } 
+    }
   }
 
 
@@ -27,54 +36,13 @@ const Feed = () => {
             <label htmlFor="user-upload-img">
               <BiImageAdd className="add-img-icon" />
             </label>
-            <input id="user-upload-img" type="file" onChange={userFileInput} />
+            <input id="user-upload-img" type="file" accept="image/*" onChange={userFileInput} />
             <button className="secondary">Post</button>
           </div>
         </form>
-        <div className="post-area">
-          <div className="post">
-            <div className="user-data-post">
-              <img src={profilePic} alt="profile-pic" className="profile-pic" />
-              <div>
-                <p className="user-name">@Thunder</p>
-                <p className="username">John Wick</p>
-              </div>
-            </div>
-            <img
-              src="https://blenderartists.org/uploads/default/original/4X/7/f/3/7f36fa03901a1714543c7fbdf3403ce4179d5605.jpeg"
-              className="user-posted-image"
-              alt="user posted image"
-            />
-            <div className="user-interaction-area">
-              <div className="icon"></div>
-              <div className="icon"></div>
-              <div className="icon"></div>
-              <div className="icon"></div>
-            </div>
-          </div>
-        </div>
-        <div className="post-area">
-          <div className="post">
-            <div className="user-data-post">
-              <img src={profilePic} alt="profile-pic" className="profile-pic" />
-              <div>
-                <p className="user-name">@Thunder</p>
-                <p className="username">John Wick</p>
-              </div>
-            </div>
-            <img
-              src="https://blenderartists.org/uploads/default/original/4X/7/f/3/7f36fa03901a1714543c7fbdf3403ce4179d5605.jpeg"
-              className="user-posted-image"
-              alt="user posted image"
-            />
-            <div className="user-interaction-area">
-              <div className="icon"></div>
-              <div className="icon"></div>
-              <div className="icon"></div>
-              <div className="icon"></div>
-            </div>
-          </div>
-        </div>
+        <Post />
+        <Post />
+        <Post />
       </section>
       <Searchbar />
     </main>

@@ -2,20 +2,26 @@ import { BiHomeAlt, BiBookmark, BiUser } from "react-icons/bi";
 import { CgMoreO } from "react-icons/cg";
 import image from "../assets/android-chrome-192x192.png";
 import profilePic from "../assets/john-wick-profilepic.jfif";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 const Sidebar = () => {
-  
+  const navigate = useNavigate()
+
+  const userRedirect = () => {
+    navigate("/profile")
+  }
+
   const [windowSize, setWindowSize] = useState(window.innerWidth)
 
   window.addEventListener("resize", () => {
     setWindowSize(window.innerWidth)
   })
-
+  
   if(windowSize <= 500) {
     return (
       <section className="mobile-header">
-        <img src={profilePic} alt="profile-pic" className="mobile-user-account-img" />
+        <img onClick={userRedirect} src={profilePic} alt="profile-pic" className="mobile-user-account-img" />
         <img src={image} alt="logo" className="sidebar-logo" />
         <CgMoreO className="mobile-settings-icon" />
       </section>
