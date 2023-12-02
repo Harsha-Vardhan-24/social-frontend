@@ -8,15 +8,15 @@ const Homepage = () => {
   const navigate = useNavigate()
   const isLoggedIn = userCheck()
 
-  if (isLoggedIn) {
-    useEffect(() => {
-      navigate("/feed")
-    }, [])
-  } else {
+  useEffect(() => {
+    navigate("/feed")
+  },[])
+  
+  if(!isLoggedIn) {
     return (
       <main className="homepage">
         <section className="mockup">Mockups in here</section>
-        <Login />
+        <Login updateLogin={() => {}} />
       </main>
     )
   }

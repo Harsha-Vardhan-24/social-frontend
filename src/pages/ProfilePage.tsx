@@ -30,7 +30,7 @@ const userProfilePage = () => {
             <BiMessageAdd />
             <h1>There are no posts, Consider posting your thoughts...</h1>
           </div> : 
-          <div>
+          <div> 
             <Post />  
             <Post />
             <Post />

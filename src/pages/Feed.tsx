@@ -7,19 +7,26 @@ import { useState } from "react";
 import Post from "../components/Post";
 
 const Feed = () => {
-  const [postImage, setPostImage] = useState(undefined);
+  const [postImage, setPostImage] = useState<string | undefined>(undefined);
 
-  const userFileInput = (e: any) => {
-    const userFile = e.currentTarget.files[0] 
-    
-    if (userFile) {
-      if (userFile.type.startsWith("image/")) {
-        console.log(userFile)
-      } else {
-        console.log("This is not a image file type")
-      } 
+  const userFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+  
+    if (file) {
+      const reader = new FileReader();
+      
+      reader.readAsDataURL(file);
+  
+      reader.onload = () => {
+        const userPost: string = reader.result as string;
+        setPostImage(userPost);
+      };
+  
+      reader.onerror = error => {
+        console.error('Reader error:', error);
+      };
     }
-  }
+  };
 
 
   return (
@@ -39,6 +46,7 @@ const Feed = () => {
             <input id="user-upload-img" type="file" accept="image/*" onChange={userFileInput} />
             <button className="secondary">Post</button>
           </div>
+          {postImage !== undefined && <img width={100} height={100} src={postImage} />}
         </form>
         <Post />
         <Post />

@@ -140,6 +140,7 @@ footer {
 .main-area {
   display: flex;
   justify-content: space-between;
+  margin-right: 50px;
 }
 
 /* Side Bar */
@@ -177,6 +178,10 @@ footer {
 .sidebar-btn {
   margin-top: 1.5em;
   width: 100%;
+}
+
+.profile-more-options.disabled {
+  display: none;
 }
 
 /* Search Area */
@@ -324,6 +329,8 @@ footer {
   background-color: whitesmoke;
   box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
   margin: 10px auto 0;
+  padding: 1em;
+  border-radius: 10px;
 }
 
 .user-data-post {
@@ -424,6 +431,24 @@ footer {
   width: 500px;
 }
 
+.profile-more-options {
+  position: absolute;
+  left: 10em;
+  top: 15em;
+}
+
+.profile-more-options > p {
+  padding: 10px;
+  font-weight: 500;
+}
+
+.profile-more-options > p:hover,
+.profile-more-options > p:active,
+.profile-more-options > p:focus {
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+
+
 @media only screen and (max-width: 500px) {
   header > h1 {
     display: none;
@@ -447,6 +472,7 @@ footer {
 
   .main-area {
     display: inline-block;
+    margin-right: 0;
   }
 
   .mobile-header {
@@ -482,13 +508,12 @@ footer {
   .post-box {
     display: flex;
     flex-direction: column;
-    padding: 1em;
+    align-items: center;
     margin: 0 auto;
   }
 
   .post-input-form {
     width: 80vw;
-    margin-left: 8px;
   }
 
   .profile-pic {
@@ -512,6 +537,26 @@ footer {
 
   .user-profile-text {
     font-size: 1em;
+  }
+
+  .profile-more-options {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    top: 0;
+    left: 0;
+  }
+
+  .profile-more-options > p {
+    font-weight: 600;
+    text-align: center;
+    padding: 10px;
+  }
+  
+  .profile-more-options > p:active,
+  .profile-more-options > p:focus,
+  .profile-more-options > p:hover {
+    box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
   }
 }
 
