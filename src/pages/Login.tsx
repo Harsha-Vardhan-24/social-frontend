@@ -126,7 +126,7 @@ const Login = ({ updateLogin }: { updateLogin: () => void }) => {
       </section>
     )
   } else {
-    navigate("/")
+    return navigate("/")
   }
 }
 

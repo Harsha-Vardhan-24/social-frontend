@@ -5,9 +5,11 @@ import { BiImageAdd } from "react-icons/bi";
 import { submitPost } from "../utils/utils";
 import { useState } from "react";
 import Post from "../components/Post";
+import { postData } from "../api/api";
 
 const Feed = () => {
   const [postImage, setPostImage] = useState<string | undefined>(undefined);
+  const [postText, setPostText] = useState<string | undefined>(undefined);
 
   const userFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -28,6 +30,10 @@ const Feed = () => {
     }
   };
 
+  const upadteUserText = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    e.preventDefault()
+    setPostText(e.target.value)
+  };
 
   return (
     <main className="main-area">
@@ -38,13 +44,15 @@ const Feed = () => {
           <textarea
             className="post-input-form"
             placeholder="What are your thoughts..?"
+            onChange={upadteUserText}
+            value={postText}
           />
           <div className="action-items">
             <label htmlFor="user-upload-img">
               <BiImageAdd className="add-img-icon" />
             </label>
             <input id="user-upload-img" type="file" accept="image/*" onChange={userFileInput} />
-            <button className="secondary">Post</button>
+            <button onClick={(e) => postData(e, postImage, postText)} className="secondary">Post</button>
           </div>
           {postImage !== undefined && <img width={100} height={100} src={postImage} />}
         </form>

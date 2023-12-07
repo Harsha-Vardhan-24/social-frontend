@@ -24,5 +24,12 @@ export const userCheck = () => {
 
 export const submitPost = (e: React.FormEvent) => {
   e.preventDefault();
-   
+}
+
+export const getUser = () => {
+  if(localStorage.getItem("userEmail")) {
+    return localStorage.getItem("userEmail")
+  } else {
+    return false
+  }
 }
