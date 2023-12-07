@@ -2,10 +2,10 @@ import Searchbar from "../components/Searchbar";
 import Sidebar from "../components/Sidebar";
 import profilePic from "../assets/john-wick-profilepic.jfif";
 import { BiImageAdd } from "react-icons/bi";
-import { submitPost } from "../utils/utils";
+import { getUser, submitPost } from "../utils/utils";
 import { useState } from "react";
 import Post from "../components/Post";
-import { postData } from "../api/api";
+import { checkPosts, postData } from "../api/api";
 
 const Feed = () => {
   const [postImage, setPostImage] = useState<string | undefined>(undefined);
@@ -34,6 +34,8 @@ const Feed = () => {
     e.preventDefault()
     setPostText(e.target.value)
   };
+
+  checkPosts(getUser());
 
   return (
     <main className="main-area">

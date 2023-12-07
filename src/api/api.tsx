@@ -7,5 +7,10 @@ export const postData = async (e: React.MouseEvent<HTMLButtonElement>, postImage
   e.preventDefault();
   const userEmail = getUser();
   const res = await axios.post(`${apiKey}file-upload`, {postImage, postText, userEmail})
-  console.log(res.data)
+  console.log(res.data.response)
+}
+
+export const checkPosts = async (email: String | null | boolean) => {
+  const res = await axios.get(`${apiKey}file-upload`)
+  console.log(res)
 }
