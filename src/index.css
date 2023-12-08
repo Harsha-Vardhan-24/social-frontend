@@ -360,6 +360,12 @@ footer {
   margin-left: auto;
 }
 
+.post-description {
+  text-align: left;
+  padding: 10px 0;
+  font-weight: 500;
+}
+
 /* User Profile Data */
 
 .user-profile-data-area {

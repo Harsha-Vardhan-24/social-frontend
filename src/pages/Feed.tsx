@@ -57,6 +57,7 @@ const Feed = () => {
           <textarea
             className="post-input-form"
             placeholder="What are your thoughts..?"
+            maxLength={200}
             onChange={upadteUserText}
             value={postText}
           />

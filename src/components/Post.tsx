@@ -23,6 +23,9 @@ const Post = () => {
           <div className="icon"><BiShare /></div>
           <div className="icon"><BiBookmark /></div>
         </div>
+        <div>
+          <p className="post-description">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type a</p>
+        </div>
       </div>
     </div>
   )
