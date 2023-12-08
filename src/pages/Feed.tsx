@@ -2,14 +2,16 @@ import Searchbar from "../components/Searchbar";
 import Sidebar from "../components/Sidebar";
 import profilePic from "../assets/john-wick-profilepic.jfif";
 import { BiImageAdd } from "react-icons/bi";
+import { RiUserUnfollowLine } from "react-icons/ri";
 import { getUser, submitPost } from "../utils/utils";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Post from "../components/Post";
 import { checkPosts, postData } from "../api/api";
 
 const Feed = () => {
   const [postImage, setPostImage] = useState<string | undefined>(undefined);
   const [postText, setPostText] = useState<string | undefined>(undefined);
+  const [postsData, setPostsData] = useState<any>(undefined)
 
   const userFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
@@ -35,7 +37,16 @@ const Feed = () => {
     setPostText(e.target.value)
   };
 
-  checkPosts(getUser());
+  useEffect(() => {
+    const fetchPosts = async () => {
+      const data = await checkPosts(getUser())
+      setPostsData(data)
+    }
+    fetchPosts()
+  }, [])
+
+
+  console.log(postsData)
 
   return (
     <main className="main-area">
@@ -58,9 +69,19 @@ const Feed = () => {
           </div>
           {postImage !== undefined && <img width={100} height={100} src={postImage} />}
         </form>
-        <Post />
-        <Post />
-        <Post />
+        {
+          postsData?.message ? (
+          <div>
+            <RiUserUnfollowLine />
+            <h1>Follow Some People To get Posts</h1>
+          </div>) : (
+          <>
+            <Post />
+            <Post />
+            <Post />
+          </>)
+        }
+
       </section>
       <Searchbar />
     </main>

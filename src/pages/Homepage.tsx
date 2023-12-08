@@ -7,15 +7,15 @@ const Homepage = () => {
   const navigate = useNavigate()
   const isLoggedIn = userCheck()
   
-  if(!isLoggedIn) {
+  if(isLoggedIn) {
+    return navigate("/feed")
+  } else {
     return (
       <main className="homepage">
         <section className="mockup">Mockups in here</section>
         <Login updateLogin={() => {}} />
       </main>
     )
-  } else {
-    return navigate("/feed")
   }
 }
 
