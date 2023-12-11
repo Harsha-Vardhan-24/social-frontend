@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useEffect, useState } from "react"
 import { Formik, Form, Field } from "formik"
 import * as Yup from "yup"
 import axios from "axios"
@@ -68,66 +68,67 @@ const Login = ({ updateLogin }: { updateLogin: () => void }) => {
     }
   }
 
-
-  if(userCheck() !== true) {
-    return (
-      <section className="login-section">
-        <img src={image} alt="logo" className="logo" />
-        <h1>{signUp ? "Create " : "Login to your "}account</h1>
-        <p>{signUp ? "Already have an account?" : "Don't have an account yet?" } <a onClick={setSignup}><span className="link">{signUp ? "Login" : "Signup"}</span></a></p>
-        {userMessage ? 
-        <div className="error-message">
-          <p>{userMessage}</p>
-        </div> :
-        <div></div>
-        }
-        {signUp ? 
-          <Formik
-            initialValues={signUpInitialValues}
-            enableReinitialize={true}
-            validationSchema={signupSchema}
-            onSubmit={values => userSignUp(values)}
-          >
-          {({ errors, touched }) => (
-            <Form className="form-area">
-              <Field className="form-element" name="email" type="email" placeholder="Email" />
-              {errors.email && touched.email ? (
-                <div>{errors.email}</div>
-              ) : null}
-              <Field className="form-element" name="fullName" placeholder="Full Name" />
-              {errors.fullName && touched.fullName ? (
-                <div>{errors.fullName}</div>
-              ) : null}
-              <Field className="form-element" name="userName" placeholder="User Name" />
-              {errors.userName && touched.userName ? <div>{errors.userName}</div> : null}
-              <Field className="form-element" name="password" type="password" placeholder="password" />
-              {errors.password && touched.password ? <div>{errors.password}</div> : null}
-              <button type="submit" className="primary" disabled={Object.keys(errors).length > 0}>Sign Up</button>
-            </Form>
-          )}
-          </Formik> : 
-          <Formik
-          initialValues={loginInitialValues}
+  useEffect(() => {
+    if(userCheck()) {
+        navigate("/")
+      }
+  }, [])
+  
+  return (
+    <section className="login-section">
+      <img src={image} alt="logo" className="logo" />
+      <h1>{signUp ? "Create " : "Login to your "}account</h1>
+      <p>{signUp ? "Already have an account?" : "Don't have an account yet?" } <a onClick={setSignup}><span className="link">{signUp ? "Login" : "Signup"}</span></a></p>
+      {userMessage ? 
+      <div className="error-message">
+        <p>{userMessage}</p>
+      </div> :
+      <div></div>
+      }
+      {signUp ? 
+        <Formik
+          initialValues={signUpInitialValues}
           enableReinitialize={true}
-          validationSchema={loginSchema}
-          onSubmit={values => userLogin(values)}
+          validationSchema={signupSchema}
+          onSubmit={values => userSignUp(values)}
         >
-          {({ errors, touched }) => (
-            <Form className="form-area">
-              <Field className="form-element" name="email" type="email" placeholder="Email" />
-              {errors.email && touched.email ? <div>{errors.email}</div> : null}
-              <Field className="form-element" name="password" type="password" placeholder="password" />
-              {errors.password && touched.password ? <div>{errors.password}</div> : null}
-              <button type="submit" className="primary" disabled={Object.keys(errors).length > 0}>Login In</button>
-            </Form>
-          )}
-          </Formik>
-        }
-      </section>
-    )
-  } else {
-    return navigate("/")
-  }
+        {({ errors, touched }) => (
+          <Form className="form-area">
+            <Field className="form-element" name="email" type="email" placeholder="Email" />
+            {errors.email && touched.email ? (
+              <div>{errors.email}</div>
+            ) : null}
+            <Field className="form-element" name="fullName" placeholder="Full Name" />
+            {errors.fullName && touched.fullName ? (
+              <div>{errors.fullName}</div>
+            ) : null}
+            <Field className="form-element" name="userName" placeholder="User Name" />
+            {errors.userName && touched.userName ? <div>{errors.userName}</div> : null}
+            <Field className="form-element" name="password" type="password" placeholder="password" />
+            {errors.password && touched.password ? <div>{errors.password}</div> : null}
+            <button type="submit" className="primary" disabled={Object.keys(errors).length > 0}>Sign Up</button>
+          </Form>
+        )}
+        </Formik> : 
+        <Formik
+        initialValues={loginInitialValues}
+        enableReinitialize={true}
+        validationSchema={loginSchema}
+        onSubmit={values => userLogin(values)}
+      >
+        {({ errors, touched }) => (
+          <Form className="form-area">
+            <Field className="form-element" name="email" type="email" placeholder="Email" />
+            {errors.email && touched.email ? <div>{errors.email}</div> : null}
+            <Field className="form-element" name="password" type="password" placeholder="password" />
+            {errors.password && touched.password ? <div>{errors.password}</div> : null}
+            <button type="submit" className="primary" disabled={Object.keys(errors).length > 0}>Login In</button>
+          </Form>
+        )}
+        </Formik>
+      }
+    </section>
+  )
 }
 
 export default Login

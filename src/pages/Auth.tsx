@@ -10,10 +10,10 @@ const Auth = () => {
     setLogin(true)
   }
 
-  if(login) {
-    return <Login updateLogin={updateLogin} />
-  } else {
+  if(login !== true) {
     return <Outlet />
+  } else {
+    return <Login updateLogin={updateLogin} />
   }
 }
 
